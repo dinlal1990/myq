@@ -1,0 +1,46 @@
+<div>
+  <form [formGroup] ="searchForm">
+    <div>
+      <label for="success">
+        <input type="checkbox" name="success" formControlName="successField" />
+        successfull
+      </label>
+    </div>
+    <div>
+      <label for="failure">
+        <input type="checkbox" name="failure" formControlName="failureField" />
+        failed
+      </label>
+    </div>
+    <div>
+      <label for="search">Search Mission Name: </label>
+      <input type="text" name="search" formControlName ="searchField" />
+    </div>
+  </form>
+  <div>
+    <h2>Matching Launches:</h2>
+  </div>
+
+  <!-- Table Data -->
+
+  <table class="launchData" *ngIf="tableDataSets">
+    <tr>
+      <th>Mission Name</th>
+      <th>Launch Year</th>
+      <th>Launch Description</th>
+      <th>Mission Image</th>
+    </tr>
+   <tr *ngFor = "let tableDataSet of tableDataSets">
+   <td>{{tableDataSet.mission_name}}</td>
+   <td>{{tableDataSet.launch_year}}</td>
+   <td>{{tableDataSet.launch_date_local }}</td>
+   <td class="portrait"><img src="{{tableDataSet.links.mission_patch}}"></td>
+  </tr>
+  </table>
+
+  <div *ngIf="tableDataSets === null">
+       <h1>No Records Found</h1>
+  </div>
+  
+  
+<router-outlet></router-outlet>
